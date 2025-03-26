@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{user.username}}'s profile</h1>
+<h1><strong>name:</strong>{{user.first_name}}</h1>
+<h2><strong>StartChat:</strong><a href="{% url "chat_view" user.username%}">Start</a>Chat</h2>
+
+{% endblock %}

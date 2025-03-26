@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Website{% endblock %}</title>
+    <style>
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        li {
+            margin-right: 15px;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+            padding: 8px 12px;
+            background-color: #555;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <li><a href="{% url 'home_page' %}">Home</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url "myprofile_page" %}">{{ user.username }}</a></li>
+                <li><a href="{% url 'logout_page' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login_page' %}">Login</a></li>
+                <li><a href="{% url 'register_page' %}">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <!-- Page Content -->
+    <div>
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</body>
+</html>
